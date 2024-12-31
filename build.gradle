@@ -1,0 +1,52 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.17'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.kh'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket' // websocket
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.6' // jwt
+	implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security
+	implementation 'com.opencsv:opencsv:5.7.1' // csv 관련 dependency
+	implementation 'com.google.firebase:firebase-admin:9.4.1' // firebase
+	implementation 'com.fasterxml.jackson.core:jackson-databind' // flask dependency
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	implementation 'org.springframework.boot:spring-boot-starter-validation' //
+	compileOnly 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok' // test 환경 lombok 적용
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6' // jwt
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6' // JSON 처리 라이브러리
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok' // test 환경 lombok 적용
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
